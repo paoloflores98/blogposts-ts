@@ -1,11 +1,12 @@
 import Link from "next/link"
-import { buttonVariants } from "@/components/ui/button"
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import { prisma } from "@/lib/prisma"
-import BlogpostCard from "@/components/general/BlogpostCard"
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
+import { buttonVariants } from "@/components/ui/button"
+import BlogpostCard from "@/components/general/BlogPostCard"
+import { redirect } from "next/navigation"
 
 async function getData(userId: string) {
-  // await new Promise((resolve) => setTimeout(resolve, 2000))
+  await new Promise((resolve) => setTimeout(resolve, 5000))
 
   const data = await prisma.blogPost.findMany({
     where: {
@@ -23,7 +24,9 @@ export default async function DashboardPage() {
   const { getUser } = getKindeServerSession()
   const user = await getUser()
 
-  const data = await getData(user!.id)
+  if (!user) return redirect("/api/auth/register")
+  
+  const data = await getData(user.id)
 
   return (
     <>

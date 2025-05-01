@@ -15,7 +15,7 @@ interface Props {
   }
 }
 
-export default function BlogpostCard({ data }: Props) {
+export default function BlogPostCard({ data }: Props) {
   return (
     <div className="group relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-md transition-all hover:shadow-lg">
       <Link
