@@ -1,7 +1,13 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import Link from "next/link"
+import { buttonVariants } from "@/components/ui/button"
+import { RegisterLink, LoginLink, LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components"
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 
-export default function Navbar() {
+export default async function Navbar() {
+  // Obtener el usuario autenticado
+  const { getUser } = getKindeServerSession()
+  const user = await getUser()
+
   return (
     <nav className="py-5 flex items-center justify-between">
       <div className="flex items-center gap-6">
@@ -22,9 +28,28 @@ export default function Navbar() {
             href="/dashboard"
           >Dashboard</Link>
         </div>
+      </div>
 
-        <Button>Iniciar sesión</Button>
-        <Button variant="secondary">Registrarse</Button>
+      <div className="flex items-center gap-4">
+        {user
+          ? (
+            <>
+              <p>{user.given_name}</p>
+
+              <LogoutLink className={buttonVariants({ variant: "secondary" })}>Cerrar sesión</LogoutLink>
+            </>
+          )
+
+          : (
+            <>
+              {/* Usar el botón de Kinde para inicar sesión */}
+              <LoginLink className={buttonVariants()}>Iniciar sesión</LoginLink>
+      
+              {/* Usar el botón de Kinde para registrarse */}
+              <RegisterLink className={buttonVariants({ variant: "secondary" })}>Registrarse</RegisterLink>
+            </>
+          )
+        }
       </div>
     </nav>
   )
