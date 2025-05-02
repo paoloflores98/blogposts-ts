@@ -1,21 +1,21 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
     remotePatterns: [
       {
-        hostname: 'encrypted-tbn0.gstatic.com',
+        hostname: 'fastly.picsum.photos',
         protocol: 'https',
         port: ''
       },
       {
         hostname: 'lh3.googleusercontent.com',
         protocol: 'https',
-        port: "",
+        port: '',
       },
     ]
   }
-};
+}
 
-export default nextConfig;
+export default nextConfig
