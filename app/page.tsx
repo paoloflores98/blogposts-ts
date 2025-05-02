@@ -3,6 +3,8 @@ import { prisma } from "@/lib/prisma"
 import BlogPostCard from "@/components/general/BlogPostCard"
 import { Skeleton } from "@/components/ui/skeleton"
 
+export const revalidate = 60
+
 async function getData() {
   await new Promise((resolve) => setTimeout(resolve, 2000))
 
@@ -17,6 +19,9 @@ async function getData() {
       authorId: true,
       createdAt: true,
       updatedAt: true,
+    },
+    orderBy: {
+      createdAt: 'desc'
     }
   })
 

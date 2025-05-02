@@ -1,7 +1,7 @@
 import { buttonVariants } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { prisma } from "@/lib/prisma"
-import { CheckCheck, ChevronFirst, ChevronLeft } from "lucide-react"
+import { ChevronLeft } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
