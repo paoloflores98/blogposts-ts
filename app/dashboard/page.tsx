@@ -2,8 +2,8 @@ import Link from "next/link"
 import { prisma } from "@/lib/prisma"
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server"
 import { buttonVariants } from "@/components/ui/button"
-import BlogpostCard from "@/components/general/BlogPostCard"
 import { redirect } from "next/navigation"
+import BlogPostCard from "@/components/general/BlogPostCard"
 
 async function getData(userId: string) {
   await new Promise((resolve) => setTimeout(resolve, 2000))
@@ -40,7 +40,7 @@ export default async function DashboardPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {data.map((item) => (
-          <BlogpostCard // Componente
+          <BlogPostCard // Componente
             key={item.id}
             data={item}
           />
